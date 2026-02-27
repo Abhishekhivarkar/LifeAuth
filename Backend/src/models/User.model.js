@@ -85,6 +85,10 @@ password:{
  },
  resetPasswordExpire:{
   type:Date
+ },
+ isResetPasswordExpire:{
+  type:Boolean,
+  default:false
  }
 },{timestamps:true})
 

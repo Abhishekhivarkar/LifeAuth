@@ -1,7 +1,8 @@
 import {registerValidator,loginValidator} from "../validators/auth.validator.js"
-import {register,login,logout,verifyEmail,nomineePasseordSetUp} from "../controllers/auth/index.js"
+import {register,login,logout,verifyEmail,nomineePasseordSetUp,forgotPassword,resetPassword} from "../controllers/auth/index.js"
 import express from "express"
 import {validate} from "../middlewares/validate.middleware.js"
+
 const router = express.Router()
 
 router.post("/auth/register",validate(registerValidator),register)
@@ -14,4 +15,7 @@ router.post("/auth/verify-mail",verifyEmail)
 
 router.post("/auth/nominee-password-setup",nomineePasseordSetUp)
 
+router.post("/auth/forgot-password",forgotPassword)
+
+router.post("/auth/reset-password/:token",resetPassword)
 export default router

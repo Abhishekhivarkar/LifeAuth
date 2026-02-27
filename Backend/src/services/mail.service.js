@@ -46,3 +46,19 @@ export const sendNomineeSetupEmail = async (email, token) => {
 
   await sendEmailApi.sendTransacEmail(emailData);
 };
+
+
+export const sendResetPasswordMail =async (email,resetPasswordUrl,firstName,lastName) =>{
+  const emailData = {
+    sender,
+    to:[{email}],
+    subject:"Reset Your Password",
+    htmlContent:`
+    <h2>Click on below Reset Password text to rest your password</h2>
+    <h3>User details : ${firstName} ${lastName}</h3>
+    <a href="${resetPasswordUrl}" target="_blank">Reset Password</a>
+    <p> This link will expire in 15 minute. </p>
+    `
+  }
+  await sendEmailApi.sendTransacEmail(emailData)
+}

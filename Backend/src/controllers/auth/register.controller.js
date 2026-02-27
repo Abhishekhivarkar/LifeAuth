@@ -1,7 +1,7 @@
 import userModel from "../../models/User.model.js";
 import jwt from "jsonwebtoken";
 import {config} from "../../configs/env.config.js"
-
+import mongoose from "mongoose"
 import {sendUserVerificationEmail,sendNomineeSetupEmail} from "../../services/mail.service.js"
 const generateToken = (payload, expiresIn = "1h") => {
   return jwt.sign(payload, config.JWT_SECRET, { expiresIn });
