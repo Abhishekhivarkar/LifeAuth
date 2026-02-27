@@ -79,6 +79,12 @@ password:{
  lockUntil:{
   type:Date,
   default:null
+ },
+ resetPasswordToken:{
+  type:String
+ },
+ resetPasswordExpire:{
+  type:Date
  }
 },{timestamps:true})
 
