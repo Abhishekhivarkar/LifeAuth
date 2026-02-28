@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import authRoutes from "./routes/auth.routes.js"
-
+import submitLifeStatusRoutes from "./routes/lifeStatus.routes.js"
 
 
 const app = express()
@@ -13,6 +13,7 @@ app.use(cookieParser())
 
 
 app.use("/api", authRoutes)
+app.use("/api", submitLifeStatusRoutes)
 
 app.use("/health",(_,res)=>{
  res.status(200).json({

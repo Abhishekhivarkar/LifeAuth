@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken" 
 import {config} from "../configs/env.config.js"
-import userModel from "../models/user.model.js"
+import userModel from "../models/User.model.js"
 import blackListTokenModel from "../models/BlackListToken.model.js"
-export const authMiddleware = (req,res,next) =>{
+export const authMiddleware =async (req,res,next) =>{
  try{
   const token = req.cookies?.token || req.headers.authorization?.split(" ")[1]
   
@@ -13,7 +13,7 @@ export const authMiddleware = (req,res,next) =>{
    })
   }
   
-  const isBlackListed = await blackListTokenModel.findOne(token)
+  const isBlackListed = await blackListTokenModel.findOne({token})
   
   if(isBlackListed){
    return res.status(403).json({

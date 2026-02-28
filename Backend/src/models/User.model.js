@@ -89,6 +89,10 @@ password:{
  isResetPasswordExpire:{
   type:Boolean,
   default:false
+ },
+ verificationExpiresAt:{
+  type:Date,
+  default:null
  }
 },{timestamps:true})
 
