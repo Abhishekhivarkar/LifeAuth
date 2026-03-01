@@ -8,7 +8,7 @@ await mongoose.connect(config.MONGO_URI);
 const existing = await User.findOne({ email: "admin@lifeauth.com" });
 
 if (!existing) {
-  const hashedPassword = await bcrypt.hash("admin1234", 10);
+  
 
   await User.create({
     firstName: "system",
@@ -16,7 +16,7 @@ if (!existing) {
     lastName: "admin",
     phoneNumber: "9999999999",
     email: "admin@lifeauth.com",
-    password: hashedPassword,
+    password: "admin1234",
     role: "ADMIN",
     status: "ACTIVE",
     isEmailVerified: true

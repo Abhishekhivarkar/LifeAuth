@@ -1,5 +1,6 @@
-import LifeStatusRecordModel from "../../models/LifeStatusRecord.model";
-import UserModel from "../../models/User.model";
+import LifeStatusRecordModel from "../../models/LifeStatusRecord.model.js";
+import UserModel from "../../models/User.model.js";
+import redisClient from "../../redis/redisClient.js";
 
 export const getLifeStatusRecordById = async (req,res) =>{
     try{
@@ -30,7 +31,7 @@ export const getLifeStatusRecordById = async (req,res) =>{
         })
        }
        
-       const now = Date.now()
+       const now = new Date()
        const expiryDate = new Date(now.getTime() + (180 * 24 * 60 * 60 * 1000))
 
        record.verificationStatus = "VERIFIED"
@@ -47,7 +48,7 @@ export const getLifeStatusRecordById = async (req,res) =>{
        associatedUser.status = "ACTIVE"
 
        await associatedUser.save()
-
+       await redisClient.del("record:pending")
        return res.status(200).json({
         success:true,
         message:"Status updated successfully"
