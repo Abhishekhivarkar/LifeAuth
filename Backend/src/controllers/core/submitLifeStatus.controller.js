@@ -39,7 +39,7 @@ export const submitLifeStatus = async (req, res) => {
     }
 
     if(user.status === "DECEASED"){
-        return res.status(403),json({
+        return res.status(403).json({
             success:false,
             message:"Deceased users cannot submit verification"
         })
